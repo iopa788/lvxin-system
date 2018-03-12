@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="  
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd   
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+http://www.springframework.org/schema/mvc   
+http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<context:annotation-config />
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json;charset=UTF-8</value>
+					</list>
+				</property>
+
+			</bean>
+		</mvc:message-converters>
+		<mvc:argument-resolvers>
+			<bean
+				class="com.farsunset.lvxin.mvc.interceptor.AccessTokenArgumentResolver"></bean>
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+
+	<!-- 装配controller  -->
+	<context:component-scan base-package="com.farsunset.lvxin.controller" />
+	<context:component-scan base-package="com.farsunset.lvxin.controller.api" />
+	<context:component-scan base-package="com.farsunset.lvxin.controller.mgr" />
+	<context:component-scan base-package="com.farsunset.lvxin.controller.web" />
+	
+	<!-- 支持上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!--5M -->
+		<property name="maxUploadSize" value="104857600" />
+		<!--resolveLazily属性启用是为了推迟文件解析，以便在程序 中捕获文件大小异常 -->
+		<property name="resolveLazily" value="true" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/console/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+
+	<mvc:interceptors>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/console/**" />
+			<bean class="com.farsunset.lvxin.mvc.interceptor.SessionValidateInterceptor" />
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/cgi/**" />
+			<bean class="com.farsunset.lvxin.mvc.interceptor.RestfulValidateInterceptor" />
+		</mvc:interceptor>
+
+		<!-- 后台上传文件大小限制5m -->
+		<mvc:interceptor>
+			<mvc:mapping path="/console/user/**" />
+			<mvc:mapping path="/console/organization/**" />
+			<bean
+				class="com.farsunset.lvxin.mvc.interceptor.ServerFileUploadInterceptor">
+				<property name="maxSize" value="5242880" />
+			</bean>
+		</mvc:interceptor>
+
+		<!-- Logo文件大小限制200KB -->
+		<mvc:interceptor>
+			<mvc:mapping path="/console/publicAccount/setLogo.action" />
+			<bean
+				class="com.farsunset.lvxin.mvc.interceptor.ServerFileUploadInterceptor">
+				<property name="maxSize" value="204800" />
+			</bean>
+		</mvc:interceptor>
+
+		<!-- 客户端上传文件大小限制50m -->
+		<mvc:interceptor>
+			<mvc:mapping path="/cgi/file/upload.api" />
+			<bean
+				class="com.farsunset.lvxin.mvc.interceptor.ServerFileUploadInterceptor">
+				<property name="maxSize" value="52428800" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>  

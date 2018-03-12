@@ -1,0 +1,99 @@
+	<%@ page language="java" pageEncoding="utf-8"%>
+	<%
+	String importBasePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ request.getContextPath();
+    %>
+	<script type="text/javascript">
+    function doImport()
+	{
+		    var xlsFile = $('#excelFile').val();
+		    if($.trim(xlsFile)=='')
+		    {
+		       return;
+		    }
+		    if(!(xlsFile.lastIndexOf('.xlsx')==xlsFile.length-5)) 
+			{
+			   showETip("请使用模板文件导入");
+			   return  ;
+			}
+		    showProcess('正在导入，请稍候......');
+		    document.getElementById('importForm').submit();
+	}
+		  
+    function onFileUploadCallbak(code)
+    {
+        
+        hideProcess();
+        if(code==200)
+        {
+           showSTip("导入成功");
+           document.getElementById('searchForm').submit();
+           doHideDialog('ImportDialog');
+        }
+        
+        
+        if(code==10010)
+        {
+           showETip("导入了一个空的文件");
+        }
+        if(code==10011)
+        {
+           showETip("导入失败，文件格式不正确，请使用模板");
+        }
+        if(code==10012)
+        {
+           showETip("导入失败，必填的列不能填入空值");
+        }
+        if(code==10013)
+        {
+           showETip("导入失败，导入的用户帐号已经存在");
+        }
+        if(code==413)
+        {
+           showETip("文件超过了最大限制");
+        }
+       
+    }
+    $(document).ready(function(){ 
+         $("#excelFile").change(function (){
+           $("#filePath").val($(this).val());
+         });
+    });
+   </script>
+<div class="modal fade" id="ImportDialog" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabele2">
+	<div class="modal-dialog" style="width: 480px;" aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabele2">
+					批量导入用户数据
+				</h4>
+			</div>
+			<div class="modal-body">
+							<form id="importForm" action="<%=importBasePath%>/console/user/importExcel.action" method="post" target="importFrame" enctype="multipart/form-data" >
+								<input type="hidden"  id="Egid" />
+								<div class="alert alert-success">
+									<strong><span class="glyphicon glyphicon-info-sign" style="top:2px;" ></span></strong> 请选择用模板编辑的数据文件,最大支持5M的文件
+								</div> 
+								<div style="margin: 50px auto;">
+								    <input type="file" id="excelFile" name = "excelFile" style="display:none;" />
+									<input class="form-control" id="filePath" disabled="disabled" type="text" style="height:40px;width:100%;">  
+									<button type="button" class="btn btn-primary"  style="border-top-left-radius: 0; border-bottom-left-radius: 0;padding: 5px;height: 40px;margin-top: -40px;float:right;" onclick="$('input[id=excelFile]').click();">
+										<span class="glyphicon glyphicon-file" ></span> 选择文件
+									</button>
+								</div>
+							</form>
+						</div>
+						<iframe width="0px" height="0px" id="importFrame" name = "importFrame" style="display: none;"> </iframe>
+						<div class="panel-footer" style="padding:5px 10px;text-align: center;">
+						     <a type="button" class="btn btn-success btn-lg" onclick="doImport()"  style="width: 200px;"> 导入</a>
+						</div>
+					</div>
+					</div>
+					</div>
+					

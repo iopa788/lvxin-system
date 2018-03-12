@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.farsunset.lvxin.component.KeyboardSmartAdapterLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.farsunset.lvxin.component.CustomSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_above="@id/inputPanel"
+        android:layout_marginBottom="-2dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <com.farsunset.lvxin.component.ChatRecordListView
+            android:id="@+id/chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.farsunset.lvxin.component.CustomSwipeRefreshLayout>
+
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+    <include
+        android:id="@+id/inputPanel"
+        layout="@layout/layout_custom_inputpanel" />
+
+</com.farsunset.lvxin.component.KeyboardSmartAdapterLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- ListView的头部 -->
+
+<com.farsunset.lvxin.component.ListHeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/blue_sky"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/cellPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="95dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="-10dp"
+            app:srcCompat="@drawable/icon_tree_0" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-6dp"
+            android:layout_marginLeft="-40dp"
+            app:srcCompat="@drawable/icon_small_grass" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="-3dp"
+            android:layout_marginLeft="8dp"
+            app:srcCompat="@drawable/icon_tree_1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_marginBottom="-6dp"
+            app:srcCompat="@drawable/icon_small_flower" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-4dp"
+            app:srcCompat="@drawable/icon_tree_2" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-5dp"
+            app:srcCompat="@drawable/icon_small_mushroom" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            app:srcCompat="@drawable/icon_tree_3" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="-3dp"
+            app:srcCompat="@drawable/icon_tree_4" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-3dp"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/icon_small_snail" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="-10dp"
+            app:srcCompat="@drawable/icon_tree_5" />
+
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="-2dp"
+            app:srcCompat="@drawable/icon_small_acorn" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="-3dp"
+            app:srcCompat="@drawable/icon_small_squirrel" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_below="@id/cellPanel"
+        android:background="#5c3415" />
+
+
+    <ImageView
+        android:id="@+id/brid"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        app:srcCompat="@drawable/icon_small_brid" />
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:alpha="0.8"
+        app:srcCompat="@drawable/icon_sky_brids" />
+
+</com.farsunset.lvxin.component.ListHeaderView>

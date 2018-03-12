@@ -1,0 +1,100 @@
+<#import "/ftl/pager.ftl" as pager/>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>侣信管理系统</title>
+<#include "/resources.html">
+</head>
+<body class="web-app ui-selectable">
+
+
+	<#include "/console/header.html">
+    <#include "/console/nav.html">
+
+	<div id="mainWrapper">
+		<div class="lay-main-toolbar"></div>
+
+		<div>
+			<form action="/console/article/list.action"
+				method="post" id="searchForm" style="padding: 0px;">
+				<input type="hidden" name="currentPage" id="currentPage" value="1" />
+				<table width="100%" class="utable">
+
+					<thead>
+						<tr class="tableHeader">
+
+							<th width="20%">ID</th>
+							<th width="20%">发布者</th>
+							<th width="20%">类型</th>
+							<th width="20%">发布时间</th>
+							<th width="20%">操作</th>
+						</tr>
+						<tr>
+
+							<td></td>
+							<td style="padding: 2px;"><input name="account" type="text"
+								value="${article.account! }" class="form-control"
+								style="width: 90%; display: inline;" /></td>
+							<td><select name="type" id="Mtype"
+								style="width: 90%; display: inline;" class="form-control">
+									<option />
+									<option value="0" <#if '0' == article.type! > selected="selected"</#if>>图文</option>
+									<option value="1" <#if '1' == article.type! > selected="selected"</#if>>连接</option>
+									<option value="2" <#if '2' == article.type! > selected="selected"</#if>>视频</option>
+							</select></td>
+							<td></td>
+							<td>
+								<button type="submit" class="btn btn-primary btn-sm">
+									<span class="glyphicon glyphicon-search"></span> 查询
+								</button>
+							</td>
+						</tr>
+
+					</thead>
+					<tbody>
+                        <#list page.content as article>
+							<tr id="${article.gid!}" style="height: 50px;">
+
+								<td>${article.gid! }</td>
+								<td>${article.account! }</td>
+
+								<td>
+								    <#if article.type == '0'> 图文</#if>
+								    <#if article.type == '1'> 连接</#if>
+								    <#if article.type == '2'>视频</#if>
+								</td>
+
+								<td>${article.timestamp?number_to_datetime}</td>
+
+								<td>
+
+									<div class="btn-group btn-group-xs">
+										<button type="button" class="btn btn-primary"
+											style="padding: 5px;"
+											onclick="showPreviewDialog('${article.gid!}')" />
+										<span class="glyphicon glyphicon-eye-open"></span>查看
+									</div>
+
+								</td>
+							</tr>
+						 </#list>
+
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5"><@pager.pager page=page/>  </td>
+						</tr>
+
+					</tfoot>
+				</table>
+			</form>
+
+		</div>
+	</div>
+	<#include "/console/article/previewDialog.html">
+	<script>
+		$('#articleMenu').addClass('current');
+	</script>
+</body>
+</html>

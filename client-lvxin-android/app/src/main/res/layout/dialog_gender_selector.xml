@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="250dip"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:gravity="center"
+        android:text="@string/common_gender"
+        android:textColor="@color/theme_green"
+        android:textSize="18sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/man"
+        android:layout_width="match_parent"
+        android:layout_height="55dip"
+        android:paddingLeft="10dip"
+        android:background="@drawable/background_bottom_line_selector">
+
+        <ImageView
+            android:id="@+id/man_mark"
+            android:layout_width="16dip"
+            android:visibility="gone"
+            android:layout_height="16dip"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/icon_checked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/common_man"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/female"
+        android:layout_width="match_parent"
+        android:layout_height="55dip"
+        android:paddingLeft="10dip"
+        android:background="?selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/female_mark"
+            android:layout_width="16dip"
+            android:layout_height="16dip"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/icon_checked" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:gravity="center_vertical"
+            android:text="@string/common_female"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>

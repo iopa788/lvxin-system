@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+      jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+//生成的jar包包名和版本
+jar {
+    baseName = 'lvxin-account-server'
+    version =  '1.0.0'
+}
+
+repositories {
+    jcenter()
+}
+configurations {
+    all*.exclude group: 'com.fasterxml.jackson.core'
+    all*.exclude group: 'org.yaml'
+    all*.exclude group: 'org.hibernate'
+    
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'commons-io:commons-io:2.5'
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
+}
+ 

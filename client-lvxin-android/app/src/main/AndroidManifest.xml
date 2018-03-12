@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.farsunset.lvxin.pro">
+
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:persistent="true"
+        android:allowBackup="false"
+        android:theme="@style/Lvxin.Base.Theme"
+        android:name="com.farsunset.lvxin.app.LvxinApplication"
+        android:hardwareAccelerated="true">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="9Qbzlq0cye5gmtseuihxCteW" />
+
+        <activity android:name="com.farsunset.lvxin.activity.SplashActivity" android:theme="@style/AppSplash.Theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.HomeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.ForceOfflineAlertActivity"
+            android:theme="@style/RedDialogStyle"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.BetterySavingActivity"
+            android:theme="@style/GreenDialogStyle"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.ProfileEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.ModifyPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.MessageSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.ModifyMottoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.FeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.ServerSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.setting.ThemeSettingActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.NearbyUserListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.SNSMomentActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.MomentPublishActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.MomentMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.MomentDetailedActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.SelfMomentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.FriendMomentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.DriftBottleActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.BottleChatActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.SNSShakeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.ShakeRecordListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.ShakeSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.BottlePublishActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.BottleRecordListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.trend.MapAddressActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.PubAccountChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.FriendChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.GroupChatActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.SystemMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.FileChoiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.FileViewerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.MapLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.MapViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.chat.MMWebViewActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.ContactSelectorActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.MessageForwardActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.OrganizationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.JoinGroupRequestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.RequestHandleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.CreateGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.UpdateGroupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.GroupDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.UserDetailActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.GroupMemberListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.InviteGroupMemberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.GroupListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.PubAccountDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.PubAccountListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.MomentRuleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.LookPubAccountActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.farsunset.lvxin.activity.contact.MessageSharedActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:label="@string/label_share_to_contact"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.farsunset.lvxin.activity.util.PhotoAlbumActivity"  android:screenOrientation="portrait" />
+        <activity android:name="com.farsunset.lvxin.activity.util.PhotoVewActivity"    android:configChanges="orientation|screenSize"/>
+        <activity android:name="com.farsunset.lvxin.activity.util.PhotoGalleryActivity"   android:configChanges="orientation|screenSize"/>
+        <activity android:name="com.farsunset.lvxin.activity.util.VideoRecorderActivity" android:screenOrientation="portrait" />
+        <activity android:name="com.farsunset.lvxin.activity.util.VideoPlayerActivity"   android:configChanges="orientation|screenSize"/>
+
+        <receiver android:name="com.farsunset.lvxin.receiver.CycleLocationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.farsunset.lvxin.service.MessageNotifyService"
+            android:exported="false" />
+        <service
+            android:name="com.farsunset.lvxin.service.ApkDownloaderService"
+            android:exported="false" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
+
+
+        <!-- ****************************************CIM推送配置 begin*************************************** -->
+        <service
+            android:name="com.farsunset.cim.sdk.android.CIMPushService"
+            android:process=":cimpush" />
+        <provider
+            android:name="com.farsunset.cim.sdk.android.CIMCacheProvider"
+            android:authorities="com.farsunset.cim.provider"
+            android:exported="false" />
+        <!-- ****************************************CIM推送配置 end*************************************** -->
+
+
+        <!--消息接受广播注册-->
+        <receiver android:name="com.farsunset.lvxin.receiver.CIMPushMessageReceiver">
+            <intent-filter android:priority="0x7fffffff">
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />  <!-- 网络变化广播 -->
+                <action android:name="com.farsunset.lvxin.MESSAGE_RECEIVED" /><!-- 消息广播action -->
+                <action android:name="com.farsunset.lvxin.SENT_FAILED" /> <!-- 发送sendbody失败广播-->
+                <action android:name="com.farsunset.lvxin.SENT_SUCCESSED" /> <!-- 发送sendbody成功广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_RECOVERY" /> <!--重新连接 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_CLOSED" /> <!-- 链接意外关闭广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_FAILED" /> <!-- 链接失败广播 -->
+                <action android:name="com.farsunset.lvxin.CONNECTION_SUCCESSED" /> <!-- 链接成功广播-->
+                <action android:name="com.farsunset.lvxin.REPLY_RECEIVED" /> <!-- 发送sendbody成功后获得replaybody回应广播 -->
+
+                <!-- 【可选】 一些常用的系统广播，增强pushservice的复活机会-->
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+
+        <service
+            android:name="com.farsunset.lvxin.service.LvxinAccountService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+
+    </application>
+</manifest>

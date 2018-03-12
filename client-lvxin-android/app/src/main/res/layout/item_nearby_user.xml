@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:background="@drawable/simple_list_background">
+
+    <com.farsunset.lvxin.component.WebImageView
+        android:id="@+id/icon"
+        android:layout_width="50dip"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="50dip"
+        android:layout_centerVertical="true" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_marginTop="7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:drawablePadding="5dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/icon"
+        android:textColor="@color/theme_text_color"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:textColor="#2f4e62"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="right"
+        android:layout_toRightOf="@id/icon"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textColor="@color/text_grey"
+        android:textSize="12sp" />
+
+</RelativeLayout>

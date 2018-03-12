@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.farsunset.cim.sdk.server.model">
+	<class name="CIMSession" table="t_lvxin_cimsession">
+		<id name="account" type="java.lang.String" column="account" length="32">
+			<generator class="assigned" />
+		</id>
+		<property name="nid" column="nid" type="java.lang.Long"  />
+		<property name="deviceId" column="deviceId" type="java.lang.String" length="64"/>
+		<property name="host" column="hostAddress" type="java.lang.String" length="64"/>
+		<property name="channel" column="channel" type="java.lang.String" length="32"/>
+		<property name="deviceModel" column="deviceModel" type="java.lang.String" length="64"/>
+		<property name="clientVersion" column="clientVersion" type="java.lang.String" length="32"/>
+		<property name="systemVersion" column="systemVersion" type="java.lang.String" length="32"/>
+		<property name="bindTime" column="bindTime" type="java.lang.Long" />
+		<property name="longitude" column="longitude" type="java.lang.Double"/>
+		<property name="latitude" column="latitude" type="java.lang.Double"/>
+		<property name="location" column="location" type="java.lang.String" length="100"/>
+		<property name="apnsAble" column="apnsAble" type="java.lang.Integer"/>
+		<property name="status" column="status" type="java.lang.Integer"/>
+	</class>
+</hibernate-mapping>
+ 

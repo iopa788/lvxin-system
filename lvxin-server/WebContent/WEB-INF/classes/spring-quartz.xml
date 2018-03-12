@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xsi:schemaLocation=" 
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	  http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	"
+	> 
+	     <!-- 要调用的工作类 -->
+        <bean id="dataCleanJob" class="com.farsunset.lvxin.service.quartz.ObsoletedDataCleanTask"/>
+        <!-- 定义调用对象和调用对象的方法 -->
+        <bean id="dataCleanTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <!-- 调用的类 -->
+            <property name="targetObject" ref="dataCleanJob"/>
+            <!-- 调用类中的方法 -->
+            <property name="targetMethod" value="doTask"/>
+                 
+        </bean>
+        <!-- 定义触发时间 -->
+        <bean id="dataCleanTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail" ref="dataCleanTask"/>
+            <!-- cron表达式 -->
+            <property name="cronExpression" value="0 0 23 * * ?"/>
+        </bean>
+        
+        
+        	
+		<!-- 要调用的工作类 -->
+        <bean id="sqliteDatabaseJob" class="com.farsunset.lvxin.service.quartz.SQLiteDatabaseHandleTask"/>
+        
+        <!-- 定义调用对象和调用对象的方法 -->
+        <bean id="sqliteDatabaseTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+            <!-- 调用的类 -->
+            <property name="targetObject" ref="sqliteDatabaseJob"/>
+            <!-- 调用类中的方法 -->
+            <property name="targetMethod" value="doTask"/>
+                
+        </bean>
+        <!-- 定义触发时间 -->
+        <bean id="sqliteDatabaseTimer" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+            <property name="jobDetail" ref="sqliteDatabaseTask"/>
+            <!-- cron表达式 -->
+            <property name="cronExpression" value="0 0 0/2 * * ?"/>
+        </bean>
+        
+        <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+        <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="dataCleanTimer"/>
+                    <ref bean="sqliteDatabaseTimer"/>
+                </list>
+            </property>
+        </bean>
+</beans>

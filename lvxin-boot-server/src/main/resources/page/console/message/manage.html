@@ -1,0 +1,182 @@
+<#import "/ftl/pager.ftl" as pager/>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>侣信管理系统</title>
+<#include "/resources.html">
+<script>
+	function doDelete(id){
+		var setting = {hint:"删除后无法恢复,确定删除这个消息吗?",
+		                    onConfirm:function(){
+		                      showProcess('正在删除，请稍候......');
+		                      $.post("/console/message/delete.action", {mid:id},
+							  function(data){
+							      hideProcess();
+							      showSTip("删除成功");
+					              $('#'+id).fadeOut().fadeIn().fadeOut();
+					              doHideConfirm();
+						      });
+		                     
+		                }};
+		doShowConfirm(setting);
+	}
+
+</script>
+</head>
+<body class="web-app ui-selectable">
+
+
+		<#include "/console/header.html">
+        <#include "/console/nav.html">
+
+		<div id="mainWrapper">
+		<div class="lay-main-toolbar">
+           </div>
+		 
+				<div>
+					<form action="/console/message/list.action" method="post"
+						id="searchForm" style="padding: 0px;">
+						<input type="hidden" name="currentPage" id="currentPage" value="1"/>
+						<table width="100%" class="utable">
+
+							<thead>
+								<tr class="tableHeader">
+								    <th width="15%">ID</th>
+									<th width="8%">发送者</th>
+									<th width="8%">接受者</th>
+									<th width="6%">类型</th>
+									<th width="6%">格式</th>
+									<th width="6%">状态</th>
+									<th width="33%">内容</th>
+									<th width="8%">发送时间</th>
+									<th width="10%">操作</th>
+								</tr>
+							 	<tr>
+                                    <td>
+									</td>
+									<td style="padding: 2px;">
+										<input name="sender" value="${message.sender! }" type="text"
+											class="form-control"
+											style="width: 100%;" />
+									</td>
+
+									<td>
+										<input name="receiver" type="text" value="${message.receiver! }"
+											class="form-control"
+											style="width: 100%; " />
+									</td>
+									
+									<td>
+									<select name="action" id="Mtype" class="form-control" style="width: 100%;padding：6px;">
+									 <option />
+									 <option value="0" <#if message.action == '0'> selected="selected"</#if>>用户消息</option>
+									 <option value="2" <#if message.action == '2'> selected="selected"</#if>>系统消息</option>
+									 <option value="3" <#if message.action == '3'> selected="selected"</#if>>群组消息</option>
+									 <option value="201" <#if message.action == '201'> selected="selected"</#if>>公众号消息</option>
+									 
+									</select>
+									 
+									</td>
+									<td>
+									<select name="format" id="Mformat" class="form-control" style="width: 100%;padding：6px;">
+									 <option />
+									 <option value="0" <#if message.format == '0'> selected="selected"</#if>>文字</option>
+									 <option value="1" <#if message.format == '1'> selected="selected"</#if>>图片</option>
+									 <option value="2" <#if message.format == '2'> selected="selected"</#if>>语音</option>
+									 <option value="3" <#if message.format == '3'> selected="selected"</#if>>文件</option>
+									 <option value="4" <#if message.format == '4'> selected="selected"</#if>>地图</option>
+									 <option value="8" <#if message.format == '8'> selected="selected"</#if>>视频</option>
+									</select>
+									 
+									</td>
+									<td>
+									<select name="status" id="mstatus" class="form-control" style="width: 100%;padding：6px;">
+									 <option />
+									 <option value="2" <#if '2' == message.status! > selected="selected"</#if>>已阅读</option>
+									 <option value="1" <#if '1' == message.status! > selected="selected"</#if>>已接收</option>
+									 <option value="0" <#if '0' == message.status! > selected="selected"</#if>>未接收</option>
+									</select>
+									</td>
+									<td>
+									</td>
+									<td>
+									</td>
+									<td >
+										<button type="submit" class="btn btn-primary btn-sm">
+											<span class="glyphicon glyphicon-search"></span>查询
+										</button>
+									</td>
+								</tr>
+							 
+							</thead>
+							<tbody>
+                                <#list page.content as message>
+									<tr id="${message.mid!}"  style=" height: 50px;">
+										<td>
+										 ${message.mid!}
+										</td>
+										<td>
+											${message.sender! }
+										</td>
+										<td>
+											${message.receiver! }
+										</td>
+										<td>
+											<#if message.action == '0'>用户消息</#if>
+									        <#if message.action == '2'>系统消息</#if>
+									        <#if message.action == '3'>群组消息</#if>
+									        <#if message.action == '201'>公众号消息</#if>
+										</td>
+										<td>
+											<#if message.format == '0'>文字</#if>
+									        <#if message.format == '1'>图片</#if>
+									        <#if message.format == '2'>语音</#if>
+									        <#if message.format == '3'>文件</#if>
+									        <#if message.format == '4'>地图</#if>
+									        <#if message.format == '8'>视频</#if>
+										</td>
+										<td>
+										    <#if message.status == '2'>已阅读</#if>
+										    <#if message.status == '1'>已接收</#if>
+											<#if message.status == '0'>未接收 </#if>
+										</td>
+										<td>
+											${message.content!?html}
+										</td>
+									    <td> 
+									      ${message.timestamp?number_to_datetime}
+										</td>
+										<td>
+										 	<div class="btn-group btn-group-xs">
+										 	     <button type="button" class="btn btn-success"  style="padding: 5px;"  onclick="doShowPreview('${message.mid!}')">
+											     <span class="glyphicon glyphicon-eye-open"></span>预览</button>
+											     <button type="button" class="btn btn-danger"  style="padding: 5px;"  onclick="doDelete('${message.mid!}')">
+											     <span class="glyphicon glyphicon-trash"></span>删除</button>
+										    </div>
+										</td>
+									</tr>
+								</#list>
+								 
+							</tbody>
+							<tfoot>
+							<tr>
+									<td colspan="8">
+										<@pager.pager page=page/>   
+									</td>
+								</tr>
+							
+							</tfoot>
+						</table>
+					</form>
+
+				</div>
+			</div>
+
+<#include "/console/message/previewDialog.html">
+
+<script>
+	$('#messageMenu').addClass('current');
+</script>
+</body>
+</html>

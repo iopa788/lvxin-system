@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lvxin-server.iml" filepath="$PROJECT_DIR$/lvxin-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lvxin-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/lvxin-server_main.iml" group="lvxin-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lvxin-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/lvxin-server_test.iml" group="lvxin-server" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.farsunset.lvxin.component.CustomInputPanelView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:alpha="0.3"
+        android:background="@drawable/title_bar_top_shadow" />
+
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:minHeight="50dp">
+
+        <ImageButton
+            android:id="@+id/leftSwitchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/icon_chat_left_button"
+          />
+
+
+        <Button
+            android:id="@+id/sendMessageButton"
+            android:layout_width="45dip"
+            android:layout_height="32dip"
+            android:layout_marginTop="11dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/chat_send_button"
+            android:text="@string/common_send"
+            android:textColor="@android:color/white"
+            android:textSize="12.0sp"
+            android:visibility="invisible" />
+
+
+        <ImageButton
+            android:id="@+id/chating_select_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/icon_chat_more"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/centerInputBox"
+            android:layout_toLeftOf="@id/sendMessageButton"
+            android:layout_toRightOf="@id/leftSwitchButton"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:orientation="horizontal"
+            android:background="@drawable/input_bottom_line_hover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/messageEditText"
+                android:layout_width="0dp"
+                android:inputType="textMultiLine"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:layout_weight="9"
+                android:background="@null"
+                android:gravity="bottom|left"
+                android:minHeight="36dp"
+                android:paddingBottom="5dp"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/chat_emotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:layout_gravity="bottom"
+                app:srcCompat="@drawable/icon_face_drawable" />
+        </LinearLayout>
+
+
+        <com.farsunset.lvxin.component.RecordingButton
+            android:id="@+id/voiceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="1dp"
+            app:cardBackgroundColor="@color/record_button_bg"
+            android:layout_toLeftOf="@id/chating_select_more"
+            android:layout_toRightOf="@id/leftSwitchButton"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_gravity="center"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:text="@string/label_chat_soundrecord_normal"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </com.farsunset.lvxin.component.RecordingButton>
+    </RelativeLayout>
+
+    <com.farsunset.lvxin.component.InputAreaPanelView
+        android:id="@android:id/inputArea"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="@dimen/min_inputpanel_height"
+        android:background="@android:color/white"
+        android:visibility="gone">
+
+        <View
+            android:background="?android:listDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1px" />
+
+        <include
+            android:id="@+id/emoticoPanelView"
+            layout="@layout/layout_emotion_panel" />
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/panelAioTool"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:columnCount="2">
+
+
+            <LinearLayout
+                android:id="@+id/tool_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/chat_attach_camera_recorder" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/common_camera_recorder"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tool_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/chat_attach_picture" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/common_image"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/tool_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/chat_attach_document" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dip"
+                    android:text="@string/common_file"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tool_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/chat_attach_location" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dip"
+                    android:text="@string/common_location"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </android.support.v7.widget.GridLayout>
+    </com.farsunset.lvxin.component.InputAreaPanelView>
+</com.farsunset.lvxin.component.CustomInputPanelView>

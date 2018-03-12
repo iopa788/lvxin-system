@@ -1,0 +1,8 @@
+﻿{
+   "code":200,
+   "contentType":"5",
+   "title":"龙胜梯田秋景观赏攻略，错过十月，再等一年！",
+   "image":"http://mmbiz.qpic.cn/mmbiz/Ka5BvRdibQUibwtzaUUUWSdJTkGcibxXxNgzj9D2uaSyKTa2HyiaCibS4Ic8EuJDdWvlOLv8QVQSGI4WYw9l7QlFcvg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1",
+   "link":"http://mp.weixin.qq.com/s?__biz=MzA4MjM3MjYwNw==&mid=211646580&idx=1&sn=0a0027f25c68906be963a3ee8ad3ec22&scene=1&srcid=0816FkMqlTyxjOSMcehuzk1d#rd",
+   "content":"龙脊梯田是一个规模极为宏大的梯田群，由东向西分为金坑·大寨红瑶梯田景观区（金坑梯田）、平安壮族梯田景观区（平安壮族梯田）、龙脊古壮寨梯田观景区三部分，梯田中居住着壮、瑶两个民族。"
+}

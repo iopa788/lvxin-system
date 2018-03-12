@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	"
+	>
+	<bean id="CIMNioAcceptor" class="com.farsunset.cim.sdk.server.handler.CIMNioSocketAcceptor" init-method="bind" destroy-method="unbind">
+		<property name="port" value="${cim.server.port}" />
+		<property name="handlers">
+			<map>
+				<entry key="client_bind">
+					<bean class="com.farsunset.lvxin.cim.handler.BindHandler" />
+				</entry>
+				<entry key="client_closed">
+					<bean class="com.farsunset.lvxin.cim.handler.SessionClosedHandler"/>
+				</entry>
+				<entry key="client_pull_message">
+					<bean class="com.farsunset.lvxin.cim.handler.PullMessageHandler"/>
+				</entry>
+				<entry key="client_cycle_location">
+					<bean class="com.farsunset.lvxin.cim.handler.LocationHandler"/>
+				</entry>
+				<entry key="client_modify_profile">
+					<bean class="com.farsunset.lvxin.cim.handler.ModifyProfileHandler"/>
+				</entry>
+				<entry key="client_modify_logo">
+					<bean class="com.farsunset.lvxin.cim.handler.ModifyLogoHandler"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+</beans>
+ 

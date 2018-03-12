@@ -1,0 +1,13 @@
+syntax = "proto3";
+package com.farsunset.lvxin.model.proto;
+option java_outer_classname="PubAccountProto";
+message Model {
+   string account = 1;
+   string name = 2;
+   string description = 3;
+   string link = 4;
+   string greet = 5;
+   string apiUrl = 6;
+   string status = 7;
+}
+ 

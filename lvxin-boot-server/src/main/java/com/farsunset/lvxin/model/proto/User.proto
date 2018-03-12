@@ -1,0 +1,21 @@
+syntax = "proto3";
+package com.farsunset.lvxin.model.proto;
+option java_outer_classname="UserProto";
+message Model {
+   string account = 1;
+   string password = 2;
+   string name = 3;
+   string telephone = 4;
+   string email = 5;
+   string orgCode = 6;
+   string gender = 7;
+   int32 grade = 8;
+   string feature = 9;
+   string motto = 10;
+   string online = 11;
+   double longitude = 12;
+   double latitude = 13;
+   string location = 14;
+   string state = 15;
+   
+}

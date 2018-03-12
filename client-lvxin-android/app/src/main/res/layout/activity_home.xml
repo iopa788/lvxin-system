@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <fragment
+            android:id="@+id/conversationFragment"
+            android:name="com.farsunset.lvxin.activity.chat.ConversationFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/contactFragment"
+            android:name="com.farsunset.lvxin.activity.contact.ContactsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/trendCenterFragment"
+            android:name="com.farsunset.lvxin.activity.trend.TrendCenterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/settingCenterFragment"
+            android:name="com.farsunset.lvxin.activity.setting.UserCenterFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_tab_widget_height"
+        android:layout_gravity="bottom"
+        android:background="@color/obscure_white"
+        android:divider="@android:color/transparent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_above="@android:id/tabs"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/home_tab_widget_height"
+        android:alpha="0.5"
+        android:background="@drawable/title_bar_top_shadow" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_global_toolbar" />
+
+</TabHost>

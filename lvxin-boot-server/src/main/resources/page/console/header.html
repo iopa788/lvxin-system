@@ -1,0 +1,190 @@
+<script type="text/javascript">
+    function doLogin()
+	{
+		    var account = $('#account').val();
+		    var password = $('#password').val();
+		    if($.trim(account)=='' || $.trim(password)=='')
+		    {
+		       return;
+		    }
+		    
+		    showProcess('正在登录请稍候......');
+		    $.post("/system/login.do", {account:account,password:password},
+			   function(data){
+			      hideProcess();
+			      if(data == 403)
+			      {
+			         showETip("账号或者密码错误");
+			         return ;
+			      }
+			      doHideDialog('LoginDialog');
+			      $("#loginButton").text("系统管理员");
+			      $("#loginButton").removeAttr("onclick");
+		     });
+		}
+	function doModifyAdminPassrod()
+	{
+		    var curPasswrod = $('#curPasswrod').val();
+		    var newPasswrod = $('#newPasswrod').val();
+		    var cfmPasswrod = $('#cfmPasswrod').val();
+		    if($.trim(cfmPasswrod)=='' || $.trim(newPasswrod)=='' || $.trim(curPasswrod)=='')
+		    {
+		       return;
+		    }
+		    if(cfmPasswrod!=newPasswrod)
+		    {
+		       showETip("确认密码不一致");
+		       return;
+		    }
+		    showProcess('正在保存请稍候......');
+		    $.post("/system/manager/modifyPassword.action", {oldPassword:curPasswrod,newPassword:newPasswrod},
+			   function(data){
+			      hideProcess();
+			      if(data == 403)
+			      {
+			         showETip("当前密码错误");
+			         return ;
+			      }
+			      if(data == 404)
+			      {
+			         window.location.href="/";
+			         return ;
+			      }
+			      if(data == 200)
+			      {
+			         showSTip("密码修改成功");
+			         doHideDialog('ModifyPasswordDialog');
+			      }
+		     });
+		}	  
+</script>
+
+
+<!-- header -->
+<div id="_main_header_banner" class="header">
+		<img id = "header_logo" src="/resource/image/logo.svg" width="64px" height="64px" style="margin-left: 64px;margin-top: 16px;"/>
+		<div class="btn-group" style=" float: right;margin-top: 33px;margin-right:20px;">
+				 
+				<!-- <button class="btn btn-success" onclick="doShowDialog('ModifyPasswordDialog')">
+					${manager.name}
+				</button> -->
+				<button class="btn btn-success">${manager.name}</button>
+				<button class="btn btn-info" onclick="doShowDialog('aboutDialog')">
+				   <span class="glyphicon glyphicon-info-sign"></span>&nbsp;关于
+				</button>
+		</div>
+	    <div class="header_liner"></div>
+</div>
+
+<div class="modal fade" id="aboutDialog" tabindex="-1" role="dialog">
+		<div class="modal-dialog" style="width: 420px;">
+			<div class="modal-content">
+				<div class="modal-header" >
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                <h4 class="modal-title">侣信管理系统</h4>
+				</div>
+				<div class="modal-body">
+ 
+	    <div style="text-align: center;border:none;height: 150px;">
+	        <img src="/resource/image/icon.png" width="100px" height="100px" style="box-shadow: 0px 0px 7px 2px #d1d3d6;border: 1px solid #dfdfe0;padding: 10px;border-radius: 100px;margin-top: 20px;"/>
+
+			 <h4 style="margin-top: 15px;">v2.5.5</h4>
+		</div>
+		<ul class="list-group" style="margin-top: 20px;">
+			 
+			<li class="list-group-item" style="border-radius: 0px;">
+				侣信专业版是面向中小企业和者各类团队组织内部交流使用工具。它可以在局域网内使用保证沟通的信息安全，并且它是完全免费的，而且可以及时获得更新。  
+				<p/><p/>项目主页地址<br/><a  target="_blank" href="https://gitee.com/farsunset/lvxin-pro">https://gitee.com/farsunset/lvxin-pro</a>
+			</li>
+			 
+			<li class="list-group-item" style="border-radius: 0px;">
+				作者:远方夕阳
+			</li>
+			<li class="list-group-item" style="border-radius: 0px;">
+				Q Q:3979434
+			</li>
+			<li class="list-group-item" style="border-radius: 0px;">
+				微信:farbluesky
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="LoginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" style="width: 320px;" aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header" >
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	            <h4 class="modal-title">系统管理员登录</h4>
+			</div>
+			<div class="modal-body">
+			    <div style="text-align: center;height: 100px;">
+				    <img src="/resource/image/icon.png" style="margin-top: 20px;height: 50px;width: 50px;"/>
+				</div>
+				<div class="form-group" style="margin-top: 20px;">
+					<label style="width: 50px;">
+						<font color="red">*</font>账号:
+					</label>
+					<input type="text" class="form-control" id="account" maxlength="15"style="display: inline; width: 200px; height: 50px;" />
+				</div>
+				<div class="form-group" style="margin-top: 20px;">
+					<label style="width: 50px;">
+						<font color="red">*</font>密码:
+					</label>
+					<input type="password" class="form-control" id="password" maxlength="32" style="display: inline; width: 200px; height: 50px;" />
+				</div>
+			</div>
+			
+			<div class="modal-footer" style="text-align: center;">
+				<a type="button" class="btn btn-success btn-lg" onclick="doLogin()" style="width: 200px;">登 录</a>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModifyPasswordDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" style="width:360px;" aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header" >
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	            <h4 class="modal-title">修改管理员密码</h4>
+			</div>
+			<div class="modal-body">
+				<div class="input-group">
+					<span class="input-group-addon" style="padding: 6px;"><font color="red">*</font>当前密码</span>
+					<input type="password" class="form-control" id="curPasswrod" maxlength="15"style="display: inline; width: 252px; height: 42px;" />
+				</div>
+				<div class="input-group" style="margin-top: 20px;">
+					<span class="input-group-addon" style="padding: 6px;"><font color="red">*</font>新的密码</span>
+					<input type="password" class="form-control" id="newPasswrod" maxlength="32" style="display: inline; width: 252px; height: 42px;" />
+				</div>
+				<div class="input-group" style="margin-top: 20px;">
+					<span class="input-group-addon" style="padding: 6px;"><font color="red">*</font>确认密码</span>
+					<input type="password" class="form-control" id="cfmPasswrod" maxlength="32" style="display: inline; width: 252px; height: 42px;" />
+				</div>
+			</div>
+			
+			<div class="modal-footer" style="text-align: center;">
+				<a type="button" class="btn btn-success btn-lg" onclick="doModifyAdminPassrod()" style="width: 200px;">保 存</a>
+			</div>
+		</div>
+    </div>
+</div>
+
+
+<div id="global_mask" style="display: none; position: absolute; top: 0px; left: 0px; z-index: 9999; background-color: rgb(20, 20, 20); opacity: 0.5; width: 100%; height: 100%; overflow: hidden; background-position: initial initial; background-repeat: initial initial;"></div>
+<script>
+var logo = $("#header_logo");
+function animateUp(){
+	 logo.animate({marginTop:"0px"}, 720, animateDown);
+}
+function animateDown(){
+	logo.animate({marginTop:"20px"}, 720 ,animateUp);
+}
+$(document).ready(function(){ 
+	animateUp();
+});
+</script>

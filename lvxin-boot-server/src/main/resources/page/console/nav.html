@@ -1,0 +1,131 @@
+<script type="text/javascript">
+ function showWebClientDialog(){
+	 doShowDialog('webClientDialog');
+ }
+</script>
+<div id="_main_nav" class="ui-vnav">
+	<ul class="ui-nav-inner">
+	
+	 <li style="height: 50px;text-align: center;margin-top: 10px;">
+			 
+			<a type="button" target="_blank" onclick="showWebClientDialog()" class="btn btn-danger" >
+				<span class="glyphicon glyphicon-globe"></span> WEB版本
+			</a>		 
+		</li>
+		
+           <li style="height: 50px;text-align: center;">
+			 
+			<a type="button" target="_blank" href="http://staticres.oss-cn-hangzhou.aliyuncs.com/lvxin-pro.apk" class="btn btn-success" >
+					<span class="glyphicon glyphicon-download-alt"></span> 本地下载
+			</a>		 
+		</li>
+		
+		 
+		 <li style="height: 50px;text-align: center;">
+			 <button type="button" class="btn btn-primary" onclick="doShowDialog('scanDownloadDialog')">
+					<span class="glyphicon glyphicon-qrcode"></span> 扫码下载
+			 </button>
+							 
+		</li>
+		<li style="border-bottom: 1px solid #D1D6DA;"></li>
+			<li  class="ui-item" id="sessionMenu">
+				<a href="/console/session/list.action">
+					<img src="/resource/image/icon/online.svg" style="margin-top:-2px;margin-right: 5px; padding: 2px;" width="24px" height="24px"/>
+					<span class="ui-text">在线用户</span>
+				</a>
+			</li>
+			<li  class="ui-item" id="broadcastMenu">
+				<a href="/console/broadcast.action">
+					<img src="/resource/image/icon/notify.svg" style="margin-top:-3px;margin-right: 5px; padding: 2px;" width="24px" height="24px"/>
+					<span class="ui-text">发送广播</span>
+				</a>
+			</li>
+		    <li  class="ui-item" id="userMenu">
+				<a href="/console/user/list.action">
+					<img src="/resource/image/icon/user.svg" style="margin-top:-3px;margin-right: 5px;padding:2px;" width="24px" height="24px"/>
+					<span class="ui-text">用户管理</span>
+				</a>
+			</li>
+			 <li  class="ui-item" id="orgMenu">
+			     <a href="/console/organization/list.action">
+					<img src="/resource/image/icon/org.svg" style="margin-top:-3px;margin-right: 5px;" width="24px" height="24px"/>
+					<span class="ui-text" margin-left: -1px;>组织管理</span>
+				 </a>
+			</li>
+			
+			<li  class="ui-item" id="groupMenu">
+				<a href="/console/group/list.action">
+					<img src="/resource/image/icon/group.svg" style="margin-top:-3px;margin-right: 5px;" width="22px" height="22px"/>
+					<span class="ui-text">群组管理</span>
+				 </a>
+			</li>
+			
+		    <li  class="ui-item" id="publicAccountMenu">
+				<a href="/console/publicAccount/list.action">
+					<img src="/resource/image/icon/pub.svg" style="margin-top:-2px;margin-right: 5px;" width="22px" height="22px"/>
+					<span class="ui-text">公众账号</span>
+				 </a>
+			</li>
+			<li  class="ui-item" id="articleMenu">
+				<a href="/console/article/list.action">
+					<img src="/resource/image/icon/moment.svg" style="margin-top:-3px;margin-right: 5px;" width="22px" height="22px"/>
+					<span class="ui-text" style="margin-left: -1px;">文章管理</span>
+				 </a>
+			</li>
+			<li  class="ui-item" id="messageMenu">
+				<a href="/console/message/list.action?status=&format=">
+					<img src="/resource/image/icon/message.svg" style="margin-top:-2px;margin-right: 5px;" width="20px" height="20px"/>
+					<span class="ui-text">消息查询</span>
+				</a>
+			</li>
+			
+			<li  class="ui-item" id="configMenu">
+				<a href="/console/config/list.action">
+					<img src="/resource/image/icon/config.svg" style="margin-top:-3px;margin-right: 5px;" width="20px" height="20px"/>
+					<span class="ui-text">系统配置</span>
+			     </a>
+			</li>
+		 
+	</ul>
+	 
+</div>
+<div class="modal fade" id="scanDownloadDialog" tabindex="-1" role="dialog" >
+	<div class="modal-dialog"  aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"aria-label="Close"> <span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">
+					扫描二维码下载APK
+				</h4>
+			</div>
+			<div class="modal-body thumbnail" style="text-align: center;">
+			    <img src = "/resource/image/lvxin_qrcode.png"/>
+		    </div>
+		 </div>
+	</div>
+</div>
+<div class="modal fade  ui-draggable" id="webClientDialog" tabindex="-1" role="dialog" >
+	<div class="modal-dialog" style="width: 960px;">
+		<div class="modal-content"  >
+			<div class="modal-header ui-draggable-handle" style="cursor: move;" >
+			    <button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					WEB侣信体验
+				</h4>
+			</div>
+			<div class="modal-body" style="text-align: center;padding: 0px;">
+			    <iframe id="webIframe" style="border: 0px;border-bottom-left-radius: 4px;border-bottom-right-radius: 4px;" src="/webclient/index.action" width="958px" height="720px"></iframe>
+		    </div>
+		 </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(".ui-draggable").draggable({   
+   handle: ".ui-draggable-handle",   
+   refreshPositions: false  
+}); 
+</script>

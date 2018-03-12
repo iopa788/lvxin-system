@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/mina-core-2.0.16.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="libs/protobuf-java-3.5.0.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.8.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

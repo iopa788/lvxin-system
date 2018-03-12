@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.farsunset.lvxin.component.WebImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clickable="false"
+    android:layout_marginLeft="10dp"
+    android:layout_width="50dip"
+    android:layout_height="50dip" />

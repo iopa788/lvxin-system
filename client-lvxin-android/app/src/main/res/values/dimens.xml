@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_10dip">10dp</dimen>
+    <dimen name="ButtonCornerSize">2.0dip</dimen>
+    <dimen name="NormalTextSize">16.0dip</dimen>
+    <dimen name="sort_char_size">12sp</dimen>
+
+    <dimen name="sns_photos_spacing">5dp</dimen>
+    <dimen name="toolbar_elevation">3dp</dimen>
+</resources>

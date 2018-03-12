@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@drawable/background_bottom_line_selector">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_marginLeft="8dp"
+        android:layout_width="32dip"
+        android:layout_height="32dip"
+        android:scaleType="fitStart"
+        android:layout_centerVertical="true" />
+
+    <com.farsunset.lvxin.component.AlwaysMarqueeTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="40dip"
+        android:layout_centerVertical="true"
+        android:maxLines="1"
+        android:layout_toRightOf="@id/icon"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/night_black"
+        android:textSize="12sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/icon_setting_arrow" />
+
+</RelativeLayout>

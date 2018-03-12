@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
+
+    <com.farsunset.lvxin.component.WebImageView
+        android:id="@+id/logo"
+        android:layout_width="48dip"
+        android:layout_height="48dip"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/logo"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+     />
+
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:textColor="@color/text_grey"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:id="@+id/badge"
+        style="@style/badgeTextViewStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="18dp"
+        android:minWidth="18dp"
+        android:textSize="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp" />
+
+    <com.farsunset.lvxin.component.EmoticonTextView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dip"
+        android:layout_toLeftOf="@id/badge"
+        android:layout_toRightOf="@id/logo"
+        android:drawablePadding="3dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/text_grey"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

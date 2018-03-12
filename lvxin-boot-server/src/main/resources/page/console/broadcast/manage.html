@@ -1,0 +1,74 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>侣信管理系统</title>
+	    <#include "/resources.html">
+	    <script type="text/javascript">
+	  
+	    function doPushMessage() 
+	     {
+	        var content = $('#content').val();
+		    if($.trim(content)=='')
+		    {
+		       return;
+		    }
+		    if($.trim(content).length > 500)
+		    {
+		       showETip("内容长度不能大于500个字");
+		    }
+		    var url = "/console/message/broadcastOnline.action";
+		    if($("#bar_all").hasClass('active')){
+		        url = "/console/message/broadcast.action";
+		    }
+		    showProcess('正在发送，请稍候......');
+		    $.post(url, {content:content,action:2,sender:'system',format:'0'},
+			   function(data){
+			      hideProcess();
+			      showSTip("发送成功");
+			      $('#content').val("");
+		     });
+	     }
+	    </script>
+		</head>
+	<body class="web-app ui-selectable">
+
+
+		<#include "/console/header.html">
+        <#include "/console/nav.html">
+
+		<div id="mainWrapper" style="text-align: center;">
+		     <div class="modal-dialog" style="width: 720px;margin: 80px auto;">
+		     <div class="modal-content">
+			 <div class="modal-header" style="height:72px;color:#ffffff;border:0px;padding: 15px;">
+			    <div class="btn-group" data-toggle="buttons">
+					  <label id="bar_online" style="padding: 10px 20px;outline:none;" class="btn btn-primary bar-button active" >
+					    <input type="radio" name="options" id="option1" autocomplete="off" checked/>在线用户 
+					  </label>
+					  <label id="bar_all" style="padding: 10px 20px;outline:none;" class="btn btn-primary bar-button" >
+					    <input type="radio" name="options" id="option2" autocomplete="off"/>全部用户
+					  </label>
+				</div>
+			 </div>
+			 <div class="modal-body" >
+
+                <textarea rows="5" class="form-control" cols="30" placeholder="消息内容500字以内"
+							style="width: 100%; height: 400px; padding: 10px;resize: none;margin:20px auto;"
+							id="content"></textarea>
+					 
+			 
+		    </div>
+			<div class="modal-footer" style="text-align: center;">
+				<button type="button" class="btn btn-success btn-lg" style="width: 260px;margin:0px; auto;" onclick="doPushMessage()">
+							<span class="glyphicon glyphicon-send" style="top:3px;"></span>&nbsp;发送
+				</button>	
+			</div>
+		</div>
+</div>
+		</div>
+		<script>
+		       $('#broadcastMenu').addClass('current');
+		</script>
+	</body>
+</html>

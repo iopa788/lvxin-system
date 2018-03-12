@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/home_tab_widget_height"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/sort_selected_bg"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="@dimen/home_tab_widget_height"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/shadowLine"
+            android:layout_width="3dp"
+            android:alpha="0.5"
+            android:layout_height="match_parent"
+            android:background="@drawable/vertical_shadow" />
+
+        <com.farsunset.lvxin.component.CharSelectorBar
+            android:id="@+id/sidrbar"
+            android:layout_width="15dip"
+            android:background="@android:color/white"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center" />
+    </LinearLayout>
+</FrameLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xsi:schemaLocation=" 
+	  http://www.springframework.org/schema/beans 
+	  http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	  http://www.springframework.org/schema/tx 
+	  http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+	  http://www.springframework.org/schema/aop 
+	  http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+	  http://www.springframework.org/schema/task 
+	  http://www.springframework.org/schema/task/spring-task-4.3.xsd
+	  http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	"
+	> 
+
+	<!-- =============================================================== -->
+	<!-- Resources                                                       -->
+	<!-- =============================================================== -->
+	<context:property-placeholder location="classpath:application.properties" file-encoding="UTF-8"/>  
+		
+	<!-- 数据源配置 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${spring.jdbc.driverClassName}" />
+        <property name="jdbcUrl" value="${spring.jdbc.url}" />
+        <property name="user" value="${spring.jdbc.username}" />
+        <property name="password" value="${spring.jdbc.password}" />
+        <property name="minPoolSize" value="${spring.jdbc.minPoolSize}" />
+		<property name="maxPoolSize" value="${spring.jdbc.maxPoolSize}" />
+		<property name="maxIdleTime" value="${spring.jdbc.maxIdleTime}" />
+		<property name="acquireIncrement" value="${spring.jdbc.acquireIncrement}" />
+		<property name="maxStatements" value="${spring.jdbc.maxStatements}" />
+		<property name="initialPoolSize" value="${spring.jdbc.initialPoolSize}" />
+		<property name="idleConnectionTestPeriod" value="${spring.jdbc.idleConnectionTestPeriod}" />
+		<property name="acquireRetryAttempts" value="${spring.jdbc.acquireRetryAttempts}" />
+		<property name="breakAfterAcquireFailure" value="${spring.jdbc.breakAfterAcquireFailure}" />
+		<property name="testConnectionOnCheckout" value="${spring.jdbc.testConnectionOnCheckout}" />
+    </bean>
+	
+	
+	<!-- sessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.farsunset.lvxin.model"/>
+		<property name="mappingLocations" value="classpath:hibernate/hbm/*.hbm.xml"/>  
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${spring.hibernate.dialect}</prop>
+				<prop key="hibernate.format_sql">false</prop>
+				<prop key="hibernate.use_sql_banners">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+    <aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* com.farsunset.lvxin.service.impl.*.*(..))" id="Serivce" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="Serivce" />
+	</aop:config>
+	
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="query*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="set*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- =============================================================== -->
+	<!-- ***************  context component-scan begin  ***************  -->
+	<!-- =============================================================== -->
+	
+	<context:component-scan base-package="com.farsunset.lvxin.repository" use-default-filters="false">
+	  <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+	</context:component-scan>
+	
+	<context:component-scan base-package="com.farsunset.lvxin.service.impl"  use-default-filters="false">
+	  <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	<context:component-scan base-package="com.farsunset.lvxin.cim.push" use-default-filters="false">
+	  <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+	
+	<task:scheduler id="asyncScheduler"  pool-size="10"  />
+    <task:executor id="asyncExecutor" pool-size="10" keep-alive="60" queue-capacity="10"/>
+    <task:annotation-driven executor="asyncExecutor" scheduler="asyncScheduler" proxy-target-class="true" />
+
+
+    <bean class="com.farsunset.lvxin.service.impl.SpringApplicationListener"/>
+	<!-- =============================================================== -->
+	<!-- ***************  context component-scan end  ***************    -->
+	<!-- =============================================================== -->
+</beans>

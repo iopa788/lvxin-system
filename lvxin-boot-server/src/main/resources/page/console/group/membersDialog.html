@@ -1,0 +1,99 @@
+<script type="text/javascript">
+    var mGroupId;
+    function showMemberDialog(id)
+    {
+    	$("#userList").empty();
+        showProcess('加载中，请稍候......');
+        mGroupId = id;
+        $.post("/console/group/memberList.action", {groupId:id},
+			   function(userList){
+			   hideProcess();
+			   $("#membersDialog").find(".badge").text(userList.length);
+			  
+			   for(var i = 0;i<userList.length;i+=4)
+			   {
+			      
+			      var line =$("#useritem").clone();
+			      $("#userList").append(line);
+			      line.removeAttr("id");
+			      line.show();
+			      
+			      buildUserInfoCell(line,userList,i,0);
+			      buildUserInfoCell(line,userList,i,1);
+			      buildUserInfoCell(line,userList,i,2);
+			      buildUserInfoCell(line,userList,i,3);
+			   } 
+		});
+        doShowDialog('membersDialog');
+    }
+  
+    function buildUserInfoCell(line,list,listIndex,cellIndex){
+    	  if(listIndex+cellIndex>=list.length){
+	    	  return;
+	      }
+	      var cell = line.children().eq(cellIndex);
+	      var user = list[listIndex+cellIndex];
+	      cell.find(".logo").attr("src","/files/user-icon/"+user.account);
+	      cell.find(".name").text(user.name);
+	      cell.find(".account").text(user.account);
+	      cell.fadeIn();
+    }
+    function onUserIconError(obj)
+	{
+		obj.src="/resource/image/icon_head_default.png";   
+	}
+    
+    $(document).ready(function(){ 
+        $(".draggable").draggable({   
+		    handle: ".modal-header",   
+		    refreshPositions: false  
+		}); 
+    });
+    
+		  
+   </script>
+   
+	<div class="modal fade" id="membersDialog" tabindex="-1" role="dialog" data-backdrop="static" style="overflow-y:auto;">
+	<div class="modal-dialog  draggable" style="width: 600px;"  aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header" style="cursor: move;">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					群成员列表<span class='badge' style="margin-top: -3px;background-color: #4da0f5;padding: 4px 9px;"></span>    
+				</h4>
+			</div>
+			<div class="modal-body" style="padding: 0px;overflow-y: auto;width: 100%;height: 700px;" >
+               <div class="row" style="border-bottom: 1px solid #eee;display:none;margin:0px;" id="useritem">
+                   <div class="col-md-3" style="text-align: center;margin: 10px 0px;">
+		               <img onerror='onUserIconError(this)' style="border-radius: 100px;" class="logo" height="50px" width="50px"/>
+		               <div class="name" style="font-size: 14px;color: #8a8a8a;padding: 3px;font-weight: bold;"></div>
+		               <div class="account" style="font-size: 14px;color: #248ac7;padding: 3px"></div>
+	               </div>
+	               <div class="col-md-3" style="text-align: center;margin: 10px 0px;display: none;">
+		               <img onerror='onUserIconError(this)' style="border-radius: 100px;" class="logo" height="50px" width="50px"/>
+		               <div class="name" style="font-size: 14px;color: #8a8a8a;padding: 3px;font-weight: bold;"></div>
+		               <div class="account" style="font-size: 14px;color: #248ac7;padding: 3px"></div>
+	               </div>
+	               <div class="col-md-3" style="text-align: center;margin: 10px 0px;display: none;">
+		               <img onerror='onUserIconError(this)' style="border-radius: 100px;" class="logo" height="50px" width="50px"/>
+		               <div class="name" style="font-size: 14px;color: #8a8a8a;padding: 3px;font-weight: bold;"></div>
+		               <div class="account" style="font-size: 14px;color: #248ac7;padding: 3px"></div>
+	               </div>
+	               <div class="col-md-3" style="text-align: center;margin: 10px 0px;display: none;">
+		               <img onerror='onUserIconError(this)' style="border-radius: 100px;" class="logo" height="50px" width="50px"/>
+		               <div class="name" style="font-size: 14px;color: #8a8a8a;padding: 3px;font-weight: bold;"></div>
+		               <div class="account" style="font-size: 14px;color: #248ac7;padding: 3px"></div>
+	               </div>
+               </div>
+               <div id="userList">
+               </div>
+			</div>
+		</div>
+     </div>
+  </div>
+</div>
+     
+     

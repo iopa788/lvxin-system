@@ -1,0 +1,97 @@
+<script type="text/javascript">
+function  showPreviewDialog(gid)
+{
+   $("#acontent").empty();
+   $("#aimage").empty();
+   $.post("/console/article/detailed.action", {gid:gid},
+			   function(data){
+               doShowDialog('previewDialog');
+
+			   $("#auther_icon").attr("src","/files/user-icon/"+data.account);
+	           var json = eval('(' + data.content + ')');
+	           var jsonImage = eval('(' + data.thumbnail + ')');
+               $("#acontent").text(json.content);
+               
+                if(data.type == 1)
+                {
+                    $("#aimage").append("<a href='"+json.link.link+"' width='95%' style='display: block;background:#E8E8E8;padding:20px;text-decoration:none;' target='_blank'>"+json.link.title+"</a>");
+                    return;
+                }
+                
+               
+                if(data.type == 2)
+                {
+                    $("#aimage").append("<video src='/files/other-files/"+json.video.video+"' controls='controls'  style='width: 100%;'></video>");
+                    return;
+                }
+                if(jsonImage == undefined){
+                	return;
+                }
+                for(var i = 0;i<jsonImage.length;i++)
+                {
+                    if(jsonImage.length > 2)
+                    {
+                      var left = i % 3 == 0 ? 0 : 5;
+                      $("#aimage").append("<img  onerror='onImageError(this)' src='/files/other-files/"+jsonImage[i].image+"'/ width='206px' style='margin-left:"+left+"px;margin-top: 5px;'>");
+                    }
+                  
+                    if(jsonImage.length == 2)
+                    {
+                      var left = i % 2 == 0 ? 0 : 8;
+                      $("#aimage").append("<img  onerror='onImageError(this)' src='/files/other-files/"+jsonImage[i].image+"'/ width='310' style='margin-left:"+left+"px;margin-top: 5px;'>");
+                    }
+                    
+                    if(jsonImage.length == 1)
+                    {
+                      $("#aimage").append("<img  onerror='onImageError(this)' src='/files/other-files/"+jsonImage[i].image+"'/ width='100%'>");
+                    }
+                }
+		 });
+
+}
+
+  function onUserIconError(obj)
+  {
+		 obj.src="/resource/image/icon_head_default.png";
+  }
+  
+  function onImageError(obj) {
+		$(obj).removeAttr("src");
+  }
+  
+  $(document).ready(function(){ 
+      $(".draggable").draggable({   
+		    handle: ".modal-header",   
+		    refreshPositions: false  
+		}); 
+  });
+   </script>
+   
+	<div class="modal fade" id="previewDialog"  tabindex="-1" role="dialog" style="overflow-y:auto;">
+	<div class="modal-dialog draggable" style="width: 640px;"  aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header" style="cursor: move;">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">
+					内容预览    
+				</h4>
+			</div>
+			<div class="modal-body" style="padding: 0px;overflow-y: auto;width: 100%;min-height: 600px;" >
+				<img src="/resource/image/circle_banner.jpg" width="100%" style="margin-top: -30px;" /> 
+				<img id="auther_icon"
+					onerror='onUserIconError(this)'
+					src="/resource/image/icon_head_default.png"
+					class="gdialog" width="80px;"
+					style="right: 40px; margin-top: -40px; position: absolute; background-color: white; padding: 2px;" />
+				<div id="acontent" style="padding: 5px; margin-top: 72px;"></div>
+				<div id="aimage" style="padding: 5px; margin-top: 10px;"></div>
+			</div>
+		</div>
+     </div>
+  </div>
+</div>
+     
+     

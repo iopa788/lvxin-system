@@ -1,0 +1,59 @@
+
+<script type="text/javascript">
+function doShowPreview(mid){
+	$("#previewSpan").empty();
+    showProcess('加载中，请稍候......');
+    $.post("/console/message/get.action", {mid:mid},
+			   function(data){
+			   hideProcess();
+			   doShowDialog('PreviewDialog');
+			   var message = data.data;
+				if(message.format =='0'){
+				  $("#previewSpan").text(message.content);
+				  return;
+				}
+				var json = eval('(' + message.content + ')');
+				if(message.format =='1'){
+			        $("#previewSpan").append("<img src='/files/other-files/"+json.image+"'/ width='100%'>");
+				}
+				if(message.format =='2'){
+					var amrName = json.key+'.amr';
+			        $("#previewSpan").append("<a  target='_blank'  href='/files/other-files/"+json.key+"?name="+amrName+"'>"+amrName+"</a>");
+				}
+				if(message.format =='3'){
+			        $("#previewSpan").append("<a  target='_blank'  href='/files/other-files/"+json.key+"?name="+json.name+"'>"+json.name+"</a>");
+				}
+				if(message.format =='4'){
+			        $("#previewSpan").append("位置: "+json.address +"</p>经度: "+json.longitude+"</p>纬度: "+json.latitude);
+				}
+				if(message.format =='8'){
+			        $("#previewSpan").append("<video src='/files/other-files/"+json.video+"' controls='controls'  style='width: 100%;'></audio>");
+				}
+    });
+    
+}
+$(document).ready(function(){ 
+    $(".draggable").draggable({   
+		    handle: ".modal-header",   
+		    refreshPositions: false  
+		}); 
+});
+</script>
+
+<div class="modal fade" id="PreviewDialog" tabindex="-1" role="dialog" style="overflow-y:auto;">
+	<div class="modal-dialog draggable" style="width: 500px;" aria-hidden="true">
+		<div class="modal-content">
+			<div class="modal-header" style="cursor: move;">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+                <h4 class="modal-title" id="myModalLabele2">
+					消息内容
+				</h4>			
+			</div>
+			<div class="modal-body" id="previewSpan">
+			</div>
+		</div>
+	</div>
+</div>

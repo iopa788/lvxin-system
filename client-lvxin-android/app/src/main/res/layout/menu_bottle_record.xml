@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?selectableItemBackgroundBorderless"
+    android:layout_width="40dp"
+    android:layout_height="50dp"
+    android:id="@+id/menu_record">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        app:srcCompat="@drawable/icon_menu_inbox"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="2dp" />
+
+    <TextView
+        android:id="@+id/badge"
+        style="@style/badgeTextViewStyle"
+        android:layout_marginTop="6dp"
+        android:layout_width="14dp"
+        android:textSize="8sp"
+        android:layout_height="14dp"
+        android:layout_marginRight="6dp"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>
